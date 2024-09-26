@@ -1,6 +1,6 @@
 from enum import Enum
 import serial
-import PowerSupply
+from .PowerSupply import PowerSupply
 
 class Objects(Enum):
     NominalVoltage = 2

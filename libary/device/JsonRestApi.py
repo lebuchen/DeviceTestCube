@@ -11,7 +11,7 @@ from typing import List
 import requests
 import logging
 
-from DeviceComm import devicecomm
+from .DeviceComm import devicecomm
 
 class StatusInfo(Enum):
     """statusInfo according to [1] Table 38"""

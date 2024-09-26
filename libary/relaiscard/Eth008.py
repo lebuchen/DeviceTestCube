@@ -1,4 +1,4 @@
-from Relaiscard import RelaisCard
+from .Relaiscard import RelaisCard
 import socket
 
 class Eth800(RelaisCard):

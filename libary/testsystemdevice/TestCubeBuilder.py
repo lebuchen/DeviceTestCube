@@ -1,5 +1,5 @@
-from powersupply import PowerSupply
-from mvkpro import MvkPro
+from powersupply.PowerSupply import PowerSupply
+from device.DeviceComm import devicecomm
 from .TestCube import TestCube
 from .PeripheralConfiguration import PeripheralConfiguration
 
@@ -12,7 +12,7 @@ class TestCubeBuilder:
         self._testcube.set_powersupply(powersupply)
         return self
 
-    def set_dut(self, dut: MvkPro):
+    def set_dut(self, dut: devicecomm):
         self._testcube.set_dut(dut)
         return self
 

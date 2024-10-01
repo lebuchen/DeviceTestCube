@@ -30,3 +30,9 @@ class devicecomm(ABC):
         self, master: int = None, port: int = None
     ) -> any:
         pass
+
+    @abstractmethod
+    def get_event(
+        self, master: int = None, port: int = None
+        ) -> any:
+            pass

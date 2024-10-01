@@ -1,4 +1,4 @@
-from relaiscard import RelaisCard
+from relaiscard.Relaiscard import RelaisCard
 
 '''
 Was kann hier angepasst werden?

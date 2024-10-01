@@ -1,5 +1,5 @@
-from mvkpro import MvkPro
-from powersupply import PowerSupply
+from device.DeviceComm import devicecomm
+from powersupply.PowerSupply import PowerSupply
 from .PeripheralConfiguration import PeripheralConfiguration
 
 class TestCube:
@@ -11,7 +11,7 @@ class TestCube:
         self._channel_ua = None
         self._relaiscard = None
 
-    def set_dut(self, dut: MvkPro) -> None:
+    def set_dut(self, dut: devicecomm) -> None:
         self._dut = dut
 
     def set_powersupply(self, powersupply: PowerSupply) -> None:
@@ -26,7 +26,7 @@ class TestCube:
     def set_peripheral_configuration(self, peripheral_configuration: PeripheralConfiguration) -> None:
         self._peripheral_configuration = peripheral_configuration
 
-    def dut(self) -> MvkPro:
+    def dut(self) -> devicecomm:
         return self._dut
 
     def powersupply(self) -> PowerSupply:

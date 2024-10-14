@@ -21,6 +21,7 @@ class PeripheralConfiguration:
     relais_mvkpro_bridge_x5_pin1_to_pin2 = 2
     relais_mvkpro_bridge_x6_pin4_to_pin3 = 7
     relais_mvkpro_bridge_x7_pin2_to_pin3 = 6
+    
     relais_ioldevice_bridge_x1_pin1_to_pin3 = 5
     relais_ioldevice_bridge_x2_pin1_to_pin2_and_pin4 = 3
     relais_ioldevice_bridge_x5_pin2_to_pin3 = 4

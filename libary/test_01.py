@@ -1,18 +1,20 @@
 from device.JsonRestApi import JsonRestApi as jra
 import powersupply.PowerSupply as powersupply
-import relaiscard.Relaiscard as relaiscard
+from relaiscard.Eth008 import Eth800
 
-hostname = "192.168.1.6"
-json = jra(hostname, 1, 5, ("admin", "private"))
+hostname = "192.168.1.111"
+json = jra(hostname, 1, 2, ("admin", "private"))
 
-#print(json.get_processdata_getdata_value())
+print(json.get_event(1, 2))
 
-#Wichtig!!! Es muss noch festgelegt werden, dass der Error nur stimmt, wenn "mode" : "APPEARS"
+#undervoltage_diag = json.get_event(1, 5)
 
-print(json.get_event(1, 5))
+#severity = undervoltage_diag[0]['severity']
 
-undervoltage_diag = json.get_event(1, 5)
+#print(severity)
 
-severity = undervoltage_diag[0]['severity']
+# from powersupply.EaPs2000 import EaPs2000
 
-print(severity)
+# ea = EaPs2000("COM3")
+# ea.set_voltage(24.1, 1)
+# ea.set_output_active(True)

@@ -589,19 +589,13 @@ class JsonRestApi(devicecomm):
             master = self._master
         if port is None:
             port = self._port
-    
-        # GET /iolink/v1/gateway/events
-        #?origin=PORTS&top=3&masterNumber=2&portNumber=7
-
-        deviceAlias = self.helper_get_device_alias(master, port)
 
         url = f"{self._url_protocol}{self._hostname}{self._url_prefix}/gateway/events?bottom=1&masterNumber={master}&portNumber={port}"
-        #GET /iolink/v1/gateway/events?origin=PORTS&top=1&masterNumber=2&portNumber=7&orderBy=timestamp desc
-    
 
         logging.debug("Request URI: " + url)
 
         response = requests.get(url, auth=self._basic_auth)
+
         # handle HTTP errors as exceptions
         response.raise_for_status()
 

@@ -16,6 +16,18 @@ class devicecomm(ABC):
         pass
 
     @abstractmethod
+    def post_processdata_value(
+        self,
+        iq_value: bool = None,
+        cq_value: bool = None,
+        io_link_value: List[int] = None,
+        io_link_valid: bool = True,
+        master: int = None,
+        port: int = None,
+    ) -> None:
+        pass
+    
+    @abstractmethod
     def get_event(
         self, master: int = None, port: int = None
         ) -> any:

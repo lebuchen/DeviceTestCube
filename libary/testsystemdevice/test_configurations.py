@@ -9,11 +9,12 @@ from device.JsonRestApi import JsonRestApi
 dut_type = JsonRestApi
 hostname = "192.168.1.111"
 master = 1
-port = 2
+port = 3
 
 #relay-config
-relay_ip_address = "192.168.1.200"
 relay_type = Eth800  
+relay_ip_address = "192.168.1.200"
+
 
 #powersupply-config
 power_supply_type = EaPs2000 
@@ -32,20 +33,20 @@ def get_testcube() -> TestCube:
     # .set_ua_channel(ua_channel_port)\
     # .get_testcube()
     
-    # return TestCubeBuilder()\
-    #     .set_dut(dut_type(hostname, master, port, ("admin", "private")))\
-    #     .set_powersupply(power_supply_type(power_supply_port))\
-    #     .set_peripheral_configuration(PeripheralConfiguration(relay_type(relay_ip_address)))\
-    #     .set_us_channel(us_channel_port)\
-    #     .set_ua_channel(ua_channel_port)\
-    #     .get_testcube()
-
     return TestCubeBuilder()\
         .set_dut(dut_type(hostname, master, port, ("admin", "private")))\
         .set_powersupply(power_supply_type(power_supply_port))\
+        .set_peripheral_configuration(PeripheralConfiguration(relay_type(relay_ip_address)))\
         .set_us_channel(us_channel_port)\
         .set_ua_channel(ua_channel_port)\
         .get_testcube()
+
+    # return TestCubeBuilder()\
+    #     .set_dut(dut_type(hostname, master, port, ("admin", "private")))\
+    #     .set_powersupply(power_supply_type(power_supply_port))\
+    #     .set_us_channel(us_channel_port)\
+    #     .set_ua_channel(ua_channel_port)\
+    #     .get_testcube()
     
 
     

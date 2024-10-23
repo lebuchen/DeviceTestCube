@@ -33,8 +33,8 @@ class PeripheralConfiguration:
         #Apply default configuration
         #MVK
         self.mvkpro_bridge_x3_pin1_to_pin3(False)
-        self.mvkpro_bridge_x4_pin1_to_pin4()
-        self.mvkpro_bridge_x5_pin1_to_pin2()
+        self.mvkpro_bridge_x4_pin1_to_pin4(False)
+        self.mvkpro_bridge_x5_pin1_to_pin2(False)
         #May lead to short circuit of output to ground
         self.mvkpro_bridge_x6_pin4_to_pin3(False)
         #May lead to short circuit of output to ground
@@ -43,7 +43,7 @@ class PeripheralConfiguration:
         #Hub
         #May lead to short circuit of supply voltage to ground
         self.ioldevice_bridge_x1_pin1_to_pin3(False)
-        self.ioldevice_bridge_x2_pin1_to_pin2_and_pin4()
+        self.ioldevice_bridge_x2_pin1_to_pin2_and_pin4(False)
         #May lead to short circuit of output to ground
         self.ioldevice_bridge_x5_pin2_to_pin3(False)
 
@@ -62,6 +62,8 @@ class PeripheralConfiguration:
 
     def mvkpro_bridge_x7_pin2_to_pin3(self, bridge: bool = True):
         self._relaiscard.set_relais_state(self.relais_mvkpro_bridge_x7_pin2_to_pin3, bridge)
+
+
 
     def ioldevice_bridge_x1_pin1_to_pin3(self, bridge: bool = True):
         self._relaiscard.set_relais_state(self.relais_ioldevice_bridge_x1_pin1_to_pin3, bridge)

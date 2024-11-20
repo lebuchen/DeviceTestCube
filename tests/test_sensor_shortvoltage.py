@@ -49,11 +49,11 @@ class Diags(unittest.TestCase):
         self.assertEqual(master, shortvoltage_diag[0]['origin']['masterNumber'])
         self.assertEqual(self._port, shortvoltage_diag[0]['origin']['portNumber'])
 
-        self.assertEqual(self.SEVERITY_ERROR, shortvoltage_diag[0]['severity'])
-        self.assertEqual(self.ERROR_CODE_SHORTVOLTAGE, shortvoltage_diag[0]['message']['code'])
-        self.assertEqual(self.MODE_DISAPPEARS, shortvoltage_diag[0]['message']['mode'])
-        self.assertEqual(master, shortvoltage_diag[0]['origin']['masterNumber'])
-        self.assertEqual(self._port, shortvoltage_diag[0]['origin']['portNumber'])
+        self.assertEqual(self.SEVERITY_ERROR, normal_diag[0]['severity'])
+        self.assertEqual(self.ERROR_CODE_SHORTVOLTAGE, normal_diag[0]['message']['code'])
+        self.assertEqual(self.MODE_DISAPPEARS, normal_diag[0]['message']['mode'])
+        self.assertEqual(master, normal_diag[0]['origin']['masterNumber'])
+        self.assertEqual(self._port, normal_diag[0]['origin']['portNumber'])
 
         tc.set_output_active(False)
 

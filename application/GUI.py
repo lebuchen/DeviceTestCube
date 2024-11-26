@@ -6,11 +6,13 @@ import subprocess
 from datetime import datetime
 import uuid
 import xml.etree.ElementTree as ET
-
+from export.Export import Export
+from export.PythonSQL import PythonSQL
 
 
 class DeviceTestCubeApp:
     def __init__(self, master):
+        self.export_type = PythonSQL 
         self.selected_files = {}
         self.test_report = None
         self.test_table = []
@@ -75,7 +77,6 @@ class DeviceTestCubeApp:
         language_menu = tk.Menu(self.menu_bar, tearoff=0, activebackground= self.color)
         self.menu_bar.add_cascade(label="Sprache", menu=language_menu)
         main.config(menu=self.menu_bar)
-
 
         for lang in self.languages:
             language_name = lang 
@@ -182,15 +183,15 @@ class DeviceTestCubeApp:
         
         self.serial = self.protocol_serial.get().strip()
         self.personal_ID = self.protocol_personal_ID.get().strip()
-        unique_id = str(uuid.uuid4())
-        self.test_report = f"{self.serial}_{self.personal_ID}_{unique_id}"
+        self.unique_id = str(uuid.uuid4())
+        self.test_report = f"{self.serial}_{self.personal_ID}_{self.unique_id}"
 
         selected_files = [self.selected_files[item] for item in selected_items]
         root_dir = os.path.commonpath(selected_files).split("tests")[0]
 
         self.console.configure(state='normal')
         self.console.delete(1.0, tk.END)
-        self.console.insert(tk.END, f"Testbericht: {unique_id}\n")
+        self.console.insert(tk.END, f"Testbericht: {self.unique_id}\n")
 
         for file_path in selected_files:
             self._execute_test_file(file_path, root_dir)
@@ -245,6 +246,7 @@ class DeviceTestCubeApp:
         # Add a new test module to the test log
 
         self.test_table.append([
+            self.unique_id,
             module_name,
             current_time,
             test_duration,
@@ -267,11 +269,8 @@ class DeviceTestCubeApp:
                 self.last_exported_report = self.test_report
 
                 # Export the report to a file
-                self.test_table
-                self.test_report
                 self.console.configure(state='normal')
-                self.console.insert(tk.END, f"...Daten wurden exportiert\n")
-                #self.console.insert(tk.END, f"...Daten wurden exportiert {self.test_report} {self.test_table}\n")
+                self.console.insert(tk.END, self.export_type.export_to_database(self.test_report, self.test_table) )
                 self.test_table = []
                 self.console.configure(state='disable')
 

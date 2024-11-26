@@ -7,8 +7,6 @@ from library.device.JsonRestApi import JsonRestApi
 import time
 
 
-"var auslagen in extra dateien die man auswählen kann und den pfad übergibt?"
-
 #DUT-config
 dut_type = JsonRestApi
 hostname = "192.168.1.111"

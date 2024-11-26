@@ -8,6 +8,7 @@ import uuid
 import xml.etree.ElementTree as ET
 
 
+
 class DeviceTestCubeApp:
     def __init__(self, master):
         self.selected_files = {}
@@ -58,6 +59,8 @@ class DeviceTestCubeApp:
         master.grid_columnconfigure(1, weight=0)
 
     def init_menu(self, master):
+        # Initialize the dropdown menu
+
         self.menu_bar = tk.Menu(master)
         master.config(menu=self.menu_bar)
 
@@ -73,12 +76,10 @@ class DeviceTestCubeApp:
         self.menu_bar.add_cascade(label="Sprache", menu=language_menu)
         main.config(menu=self.menu_bar)
 
-       # Dynamische Erstellung der Menüeinträge basierend auf den Sprachen
+
         for lang in self.languages:
             language_name = lang 
             language_menu.add_command(label=language_name, command=lambda lang=language_name: print(f"{lang} ausgewählt"))
-
-
 
         # Help menu
         help_menu = tk.Menu(self.menu_bar, tearoff=0, activebackground= self.color)
@@ -86,6 +87,8 @@ class DeviceTestCubeApp:
         help_menu.add_command(label="Über", command=lambda: messagebox.showinfo("Über", "MurrDeviceTester v1.0"))
 
     def init_table(self, master):
+        # Initialize table 
+
         table_frame = tk.LabelFrame(master, text="Test Cases", bg="#e0e0e0", font=("Arial", 12, "bold"))
         table_frame.grid(row=0, column=0, padx=20, pady=20, sticky='nsew')
 
@@ -100,6 +103,7 @@ class DeviceTestCubeApp:
             foreground=[('selected', 'black')])
 
     def init_buttons(self, master):
+        # Initialize buttons
 
         self.buttons_frame = tk.Frame(master, bg="#f0f0f0")
         self.buttons_frame.grid(row=0, column=1, padx=20, pady=10, sticky='ew')
@@ -141,6 +145,8 @@ class DeviceTestCubeApp:
 
 
     def init_footer(self, master):
+        # Initialize the footer frame
+
         footer = tk.Frame(master, bg="#e0e0e0", height=20)
         footer.grid(row=2, column=0, columnspan=2, pady=5, sticky='ew')
 
@@ -148,7 +154,8 @@ class DeviceTestCubeApp:
         tk.Label(footer, text="Version: 1.0.0", bg="#e0e0e0").pack(side='right', padx=10)
 
     def select_directory(self):
-        """Opens a dialog to select a directory and displays its Python files in the table."""
+        # Opens a dialog to select a directory and displays its Python files in the table.
+
         path = filedialog.askdirectory()
         if path:
             for row in self.table.get_children():
@@ -162,7 +169,7 @@ class DeviceTestCubeApp:
                     self.selected_files[item_id] = full_path
 
     def run_selected_files(self):
-        """Executes the selected Python files one by one and shows output in the console."""
+        # Executes the selected Python files one by one and shows output in the console.
         
         if not self.protocol_serial or not self.protocol_personal_ID:
             messagebox.showwarning("Kein Testberichtname", "Bitte geben Sie einen Testberichtnamen ein.")
@@ -192,7 +199,8 @@ class DeviceTestCubeApp:
         
 
     def _execute_test_file(self, file_path, root_dir):
-        """Executes a single Python test file and logs the result."""
+        # Executes a single Python test file and logs the result.
+
         try:
             module_name = os.path.splitext(os.path.basename(file_path))[0]
             result = subprocess.run(
@@ -219,7 +227,8 @@ class DeviceTestCubeApp:
             self.console.insert(tk.END, f"Fehler beim Ausführen von {file_path}: {e}\n")
 
     def _parse_test_output(self, output):
-        """Parses the test output to extract relevant details."""
+        # Parses the test output to extract relevant details.
+
         test_duration = None
         success = "OK" in output and "FAILED" not in output
         error_description = None
@@ -233,6 +242,7 @@ class DeviceTestCubeApp:
         return test_duration, success, error_description
 
     def add_test_module(self, module_name, current_time, test_duration, error_message, error_description):
+        # Add a new test module to the test log
 
         self.test_table.append([
             module_name,
@@ -244,6 +254,7 @@ class DeviceTestCubeApp:
         
     def export_report(self):
         # Add your report export logic here
+
         if self.test_report == None:
             messagebox.showwarning("Keine Daten" ,"Noch nichts zu exportieren!")
             return
@@ -258,8 +269,6 @@ class DeviceTestCubeApp:
                 # Export the report to a file
                 self.test_table
                 self.test_report
-                
-
                 self.console.configure(state='normal')
                 self.console.insert(tk.END, f"...Daten wurden exportiert\n")
                 #self.console.insert(tk.END, f"...Daten wurden exportiert {self.test_report} {self.test_table}\n")

@@ -1,6 +1,6 @@
 import unittest
 import time
-from library.testsystemdevice.test_configurations import *
+from library.testsystemdevice.TestConfigurations import *
 
 class Parameter(unittest.TestCase):
 

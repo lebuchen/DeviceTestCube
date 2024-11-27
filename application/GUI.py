@@ -104,8 +104,8 @@ class DeviceTestCubeApp:
             foreground=[('selected', 'black')])
 
     def init_buttons(self, master):
-        # Initialize buttons
 
+        # Initialize the Button-Frame 
         self.buttons_frame = tk.Frame(master, bg="#f0f0f0")
         self.buttons_frame.grid(row=0, column=1, padx=20, pady=10, sticky='ew')
 
@@ -114,14 +114,17 @@ class DeviceTestCubeApp:
         )
         entry_frame.grid(row=0, column=0, pady=10, padx=10, sticky='ew')
 
+        # Add input field for atricel number
         tk.Label(entry_frame, text="ArtikelNr:", font=("Arial", 12), bg="#f0f0f0").grid(row=0, column=0, sticky='w', pady=5)
         self.protocol_serial = tk.Entry(entry_frame, font=("Arial", 12), bg="#ffffff")
         self.protocol_serial.grid(row=0, column=1, pady=5, padx=5, sticky='ew')
 
+        # Add input field for Employee number
         tk.Label(entry_frame, text="PersNr:", font=("Arial", 12), bg="#f0f0f0").grid(row=1, column=0, sticky='w', pady=5)
         self.protocol_personal_ID = tk.Entry(entry_frame, font=("Arial", 12), bg="#ffffff")
         self.protocol_personal_ID.grid(row=1, column=1, pady=5, padx=5, sticky='ew')
 
+        # Initialize the RUN-button
         run_file_btn = tk.Button(
             self.buttons_frame,
             text="Ausgewählte Testfälle ausführen",
@@ -133,6 +136,7 @@ class DeviceTestCubeApp:
         )
         run_file_btn.grid(row=1, column=0, pady=5, padx=10, sticky='ew')
 
+        # Initialize the EXPORT-button
         export_btn = tk.Button(
             self.buttons_frame,
             text="Exportieren",
@@ -255,7 +259,7 @@ class DeviceTestCubeApp:
         ])
         
     def export_report(self):
-        # Add your report export logic here
+        # Export the report to a file
 
         if self.test_report == None:
             messagebox.showwarning("Keine Daten" ,"Noch nichts zu exportieren!")
@@ -267,8 +271,7 @@ class DeviceTestCubeApp:
             else:
 
                 self.last_exported_report = self.test_report
-
-                # Export the report to a file
+                
                 self.console.configure(state='normal')
                 self.console.insert(tk.END, self.export_type.export_to_database(self.test_report, self.test_table) )
                 self.test_table = []
